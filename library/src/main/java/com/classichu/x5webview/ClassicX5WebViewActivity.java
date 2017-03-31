@@ -89,14 +89,14 @@ public class ClassicX5WebViewActivity extends AppCompatActivity {
 
             @Override
             public boolean onJsTimeout() {
-                DialogManager.hideLoadingDialog();
+                // DialogManager.hideLoadingDialog();
                 return super.onJsTimeout();
             }
 
             @Override
             public void onPageStarted(WebView webView, String url, Bitmap bitmap) {
                 super.onPageStarted(webView, url, bitmap);
-                DialogManager.showLoadingDialog(ClassicX5WebViewActivity.this);
+                DialogManager.showLoadingDialog(ClassicX5WebViewActivity.this, true);
             }
 
             @Override
@@ -167,10 +167,7 @@ public class ClassicX5WebViewActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        //
-        if (DialogManager.isShowLoading()) {
-            DialogManager.hideLoadingDialog();
-        } else if (mClassicX5WebView.canGoBack()) {
+        if (mClassicX5WebView.canGoBack()) {
             mClassicX5WebView.goBack();// 返回前一个页面
         } else {
             mClassicX5WebView.destroy();
